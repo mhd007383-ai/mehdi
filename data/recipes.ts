@@ -1,3 +1,4 @@
+
 import type { Recipe } from '../types';
 
 export const allRecipes: (Omit<Recipe, 'instructions' | 'ingredients'> & { instructions: string[], ingredients: string[], imageUrl: string })[] = [
@@ -5,11 +6,12 @@ export const allRecipes: (Omit<Recipe, 'instructions' | 'ingredients'> & { instr
         recipeName: 'آبگوشت',
         description: 'یک غذای سنتی و بسیار محبوب ایرانی که از پخت طولانی گوشت، حبوبات و سیب‌زمینی تهیه می‌شود.',
         cookingTime: 'حدود ۳ تا ۴ ساعت',
+        servings: '۲ تا ۳ نفر',
         ingredients: [
-            'گوشت ماهیچه یا سردست با استخوان: ۷۵۰ گرم',
-            'نخود و لوبیای چیتی یا سفید: ۱۵۰ گرم',
-            'پیاز متوسط: ۲ تا ۳ عدد',
-            'سیب زمینی کوچک: ۵ تا ۶ عدد',
+            'گوشت ماهیچه یا سردست با استخوان: ۴۰۰ گرم',
+            'نخود و لوبیای چیتی یا سفید: ۷۵ گرم',
+            'پیاز متوسط: ۱ عدد',
+            'سیب زمینی کوچک: ۳ عدد',
             'زردچوبه و رب گوجه فرنگی: کمی',
             'نمک و فلفل: به اندازه کافی',
         ],
@@ -27,12 +29,13 @@ export const allRecipes: (Omit<Recipe, 'instructions' | 'ingredients'> & { instr
         recipeName: 'عدس پلو',
         description: 'پلوی مخلوط خوشمزه با عدس، گوشت و کشمش که طعمی دلچسب و به یادماندنی دارد.',
         cookingTime: 'حدود ۲ ساعت',
+        servings: '۳ تا ۴ نفر',
         ingredients: [
-            'برنج: ۱ کیلو',
-            'گوشت ماهیچه یا سردست گوسفند: نیم کیلو',
-            'عدس: ۷۵۰ گرم',
-            'روغن: ۲۰۰ گرم',
-            'زعفران ساییده: ۱ قاشق چایخوری',
+            'برنج: نیم کیلو',
+            'گوشت ماهیچه یا سردست گوسفند: ۲۵۰ گرم',
+            'عدس: ۴۰۰ گرم',
+            'روغن: ۱۰۰ گرم',
+            'زعفران ساییده: نصف قاشق چایخوری',
             'پیاز: ۱ عدد',
         ],
         instructions: [
@@ -51,12 +54,13 @@ export const allRecipes: (Omit<Recipe, 'instructions' | 'ingredients'> & { instr
         recipeName: 'آش رشته',
         description: 'آش سنتی و معروف ایرانی، سرشار از حبوبات، سبزیجات معطر و رشته که معمولا با کشک و پیاز داغ سرو می‌شود.',
         cookingTime: 'حدود ۲.۵ ساعت',
+        servings: '۴ تا ۵ نفر',
         ingredients: [
-            'رشته آماده شده مخصوص آش: ۷۵۰ گرم',
-            'سبزی آش: ۲ کیلو',
-            'نخود و لوبیا و عدس (مجموعاً به تساوی): ۷۵۰ گرم',
-            'پیاز سرخ کرده: ۴ تا ۵ قاشق سوپ‌خوری',
-            'کشک سائیده غلیظ: ۴ تا ۵ قاشق',
+            'رشته آماده شده مخصوص آش: ۴۰۰ گرم',
+            'سبزی آش: ۱ کیلو',
+            'نخود و لوبیا و عدس (مجموعاً به تساوی): ۴۰۰ گرم',
+            'پیاز سرخ کرده: ۲ تا ۳ قاشق سوپ‌خوری',
+            'کشک سائیده غلیظ: ۲ تا ۳ قاشق',
             'نمک و فلفل: به مقدار کافی',
         ],
         instructions: [
@@ -73,13 +77,14 @@ export const allRecipes: (Omit<Recipe, 'instructions' | 'ingredients'> & { instr
         recipeName: 'باقلا پلو',
         description: 'یک پلوی مجلسی و بسیار لذیذ ایرانی که با باقالی تازه، شوید و گوشت (معمولا ماهیچه یا گردن) طبخ می‌شود.',
         cookingTime: 'حدود ۲ ساعت',
+        servings: '۳ تا ۴ نفر',
         ingredients: [
-            'برنج: ۱ کیلو',
-            'باقلا: ۳ کیلو',
-            'شوید: ۱ کیلو',
-            'گوشت بره سردست یا ران: ۱ کیلو و نیم',
+            'برنج: نیم کیلو',
+            'باقلا: ۱.۵ کیلو',
+            'شوید: نیم کیلو',
+            'گوشت بره سردست یا ران: ۷۵۰ گرم',
             'روغن: به مقدار کافی',
-            'زعفران سائیده: ۱ قاشق چایخوری',
+            'زعفران سائیده: نصف قاشق چایخوری',
         ],
         instructions: [
             'برنج را خیس کرده باقلا را از دو پوست جدا می‌کنیم.',
@@ -98,11 +103,12 @@ export const allRecipes: (Omit<Recipe, 'instructions' | 'ingredients'> & { instr
         recipeName: 'جوجه کباب',
         description: 'تکه‌های مرغ طعم‌دار شده در پیاز، آبلیمو و زعفران که روی آتش کباب شده و معمولا با برنج زعفرانی سرو می‌شود.',
         cookingTime: 'حدود ۱ ساعت (بدون احتساب زمان مرینیت)',
+        servings: '۲ تا ۳ نفر',
         ingredients: [
-            'جوجه کبابی: هر جوجه برای دو نفر',
-            'آبلیمو: دو تا سه قاشق غذاخوری',
+            'جوجه کبابی: ۱ عدد',
+            'آبلیمو: یک تا دو قاشق غذاخوری',
             'زعفران، نمک و فلفل: به اندازه کافی',
-            'پیاز: دو عدد برای هر جوجه',
+            'پیاز: یک عدد',
         ],
         instructions: [
             'جوجه را خرد کرده و برای مدتی در پیاز خرد شده، آبلیمو، زعفران و کمی نمک و فلفل می‌خوابانیم.',
@@ -115,11 +121,12 @@ export const allRecipes: (Omit<Recipe, 'instructions' | 'ingredients'> & { instr
         recipeName: 'خورش قورمه سبزی',
         description: 'خورش ملی ایران، ترکیبی بی‌نظیر از سبزی‌های معطر، لوبیا قرمز، گوشت و لیمو عمانی که طعمی جادویی دارد.',
         cookingTime: 'حدود ۳ تا ۴ ساعت',
+        servings: '۲ تا ۳ نفر',
         ingredients: [
-            'سبزی (تره، جعفری، شنبلیله): ۱ کیلو',
-            'گوشت مغز ران: نیم کیلو',
-            'لوبیا قرمز: ۱۰۰ گرم',
-            'لیمو عمانی: ۴ عدد',
+            'سبزی (تره، جعفری، شنبلیله): نیم کیلو',
+            'گوشت مغز ران: ۲۵۰ گرم',
+            'لوبیا قرمز: ۵۰ گرم',
+            'لیمو عمانی: ۲ عدد',
             'روغن: به مقدار کافی',
             'نمک: به مقدار کافی',
         ],
@@ -135,13 +142,14 @@ export const allRecipes: (Omit<Recipe, 'instructions' | 'ingredients'> & { instr
         recipeName: 'خورش قیمه',
         description: 'خورش محبوب و پرطرفدار با لپه، گوشت و لیمو عمانی که با سیب‌زمینی سرخ کرده تزئین و همراه با پلو سرو می‌شود.',
         cookingTime: 'حدود ۲.۵ ساعت',
+        servings: '۲ تا ۳ نفر',
         ingredients: [
-            'مغز ران گوساله یا گوسفند: ۷۵۰ گرم',
-            'لپه: ۱۰۰ گرم',
-            'پیاز سرخ کرده: ۲ قاشق غذاخوری',
-            'لیمو عمانی: ۴ تا ۵ عدد',
+            'مغز ران گوساله یا گوسفند: ۴۰۰ گرم',
+            'لپه: ۵۰ گرم',
+            'پیاز سرخ کرده: ۱ قاشق غذاخوری',
+            'لیمو عمانی: ۲ تا ۳ عدد',
             'سیب زمینی: ۱ عدد متوسط',
-            'رب گوجه فرنگی: دو قاشق سوپ‌خوری',
+            'رب گوجه فرنگی: یک قاشق سوپ‌خوری',
             'روغن: به مقدار کافی برای سرخ کردن سیب زمینی',
             'نمک و فلفل: به مقدار کافی',
         ],
@@ -157,6 +165,7 @@ export const allRecipes: (Omit<Recipe, 'instructions' | 'ingredients'> & { instr
         recipeName: 'میرزا قاسمی',
         description: 'غذایی خوش‌عطر و لذیذ از شمال ایران که با بادمجان کبابی، گوجه فرنگی، سیر و تخم‌مرغ تهیه می‌شود.',
         cookingTime: 'حدود ۱ ساعت',
+        servings: '۳ تا ۴ نفر',
         ingredients: [
             'بادنجان متوسط: ۵ عدد',
             'سیر: ۱ بوته',
@@ -179,13 +188,14 @@ export const allRecipes: (Omit<Recipe, 'instructions' | 'ingredients'> & { instr
         recipeName: 'ته چین مرغ',
         description: 'یک غذای مجلسی و زیبا که از برنج، مرغ، ماست، تخم‌مرغ و زعفران فراوان تهیه شده و به صورت قالبی سرو می‌شود.',
         cookingTime: 'حدود ۲.۵ ساعت',
+        servings: '۴ تا ۵ نفر',
         ingredients: [
-            'برنج: ۱ کیلو',
-            'گوشت بره: ۱.۵ کیلو (یا حدود ۱ کیلو مرغ)',
-            'ماست کیسه: ۱ کیلو',
-            'زعفران: ۱ قاشق چایخوری',
-            'روغن: ۲۰۰ گرم',
-            'تخم مرغ: ۴ تا ۶ عدد',
+            'برنج: نیم کیلو',
+            'مرغ: ۷۵۰ گرم',
+            'ماست کیسه: نیم کیلو',
+            'زعفران: نصف قاشق چایخوری',
+            'روغن: ۱۰۰ گرم',
+            'تخم مرغ: ۲ تا ۳ عدد',
         ],
         instructions: [
             'مرغ یا گوشت بره را می‌پزیم و استخوان‌های آن را می‌گیریم.',
@@ -201,11 +211,12 @@ export const allRecipes: (Omit<Recipe, 'instructions' | 'ingredients'> & { instr
         recipeName: 'خورش فسنجان',
         description: 'خورشی اصیل و مجلسی با طعمی ملس، تهیه شده از گردوی آسیاب شده، رب انار و گوشت مرغ یا اردک.',
         cookingTime: 'حدود ۳ ساعت',
+        servings: '۳ تا ۴ نفر',
         ingredients: [
-            'مرغ پاک کرده: حدود ۱.۵ کیلو',
-            'مغز گردو چرخ کرده: نیم کیلو',
-            'پیاز سرخ کرده: ۲ تا ۴ قاشق سوپ‌خوری',
-            'آب انار یا رب انار: ۵ قاشق سوپ‌خوری رب انار',
+            'مرغ پاک کرده: حدود ۷۵۰ گرم',
+            'مغز گردو چرخ کرده: ۲۵۰ گرم',
+            'پیاز سرخ کرده: ۱ تا ۲ قاشق سوپ‌خوری',
+            'آب انار یا رب انار: ۲ تا ۳ قاشق سوپ‌خوری رب انار',
             'شکر: به مقدار کم',
             'نمک: به مقدار کافی',
         ],
@@ -222,9 +233,10 @@ export const allRecipes: (Omit<Recipe, 'instructions' | 'ingredients'> & { instr
         recipeName: 'کباب کوبیده',
         description: 'معروف‌ترین کباب ایرانی که از گوشت چرخ‌کرده و پیاز تهیه شده و روی زغال کباب می‌شود.',
         cookingTime: 'حدود ۱ ساعت (بدون احتساب زمان استراحت گوشت)',
+        servings: '۲ تا ۳ نفر',
         ingredients: [
-             'گوشت چرخ کرده: ۱ کیلو',
-             'پیاز: ۲۵۰ گرم',
+             'گوشت چرخ کرده: نیم کیلو',
+             'پیاز: ۱۲۵ گرم',
              'نمک و فلفل: به مقدار کافی',
              'زعفران دم‌کرده: به مقدار دلخواه'
         ],
@@ -243,14 +255,15 @@ export const allRecipes: (Omit<Recipe, 'instructions' | 'ingredients'> & { instr
         recipeName: 'سالاد الویه',
         description: 'سالادی سرد و بسیار محبوب، ترکیبی از سیب‌زمینی پخته، تخم‌مرغ، مرغ، خیارشور و سس مایونز.',
         cookingTime: 'حدود ۱.۵ ساعت',
+        servings: '۴ تا ۵ نفر',
         ingredients: [
-            'مرغ: یک نصفه (در حدود ۷۵۰ گرم)',
-            'تخم مرغ سفت شده: ۴ عدد',
-            'نخود سبز: یک پیمانه',
-            'هویج متوسط: ۱ تا ۲ عدد',
-            'خیارشور: ۱۵۰ گرم',
-            'سیب زمینی اسلامبولی: ۱ کیلو',
-            'سس مایونز: دو و نیم پیمانه',
+            'مرغ: یک سینه کامل (در حدود ۴۰۰ گرم)',
+            'تخم مرغ سفت شده: ۲ عدد',
+            'نخود سبز: نصف پیمانه',
+            'هویج متوسط: ۱ عدد',
+            'خیارشور: ۷۵ گرم',
+            'سیب زمینی اسلامبولی: نیم کیلو',
+            'سس مایونز: یک و نیم پیمانه',
         ],
         instructions: [
             'مرغ را با یک عدد پیاز خرد شده و چند برگ جعفری و یکی دو عدد هویج و کمی نمک می‌پزیم بطوری که بعد از پختن یکی دو قاشق بیشتر آب نداشته باشد.',
@@ -521,4 +534,103 @@ export const fastFoodRecipes: string[] = [
     'سوسیس بندری',
     'جوجه چینی',
     'میگو سوخاری',
+];
+
+export interface CommonIngredient {
+  name: string;
+  isSpice: boolean;
+  category: 'سبزیجات و میوه‌ها' | 'پروتئین' | 'حبوبات و غلات' | 'ادویه‌جات' | 'لبنیات' | 'خشکبار و چاشنی' | 'روغن و سس' | 'متفرقه';
+  units?: string[];
+}
+
+export const ingredientCategories: (CommonIngredient['category'])[] = [
+    'سبزیجات و میوه‌ها', 'پروتئین', 'حبوبات و غلات', 'ادویه‌جات', 'لبنیات', 'خشکبار و چاشنی', 'روغن و سس', 'متفرقه'
+];
+
+export const commonIngredients: CommonIngredient[] = [
+    // سبزیجات و میوه‌ها
+    { name: 'پیاز', isSpice: false, category: 'سبزیجات و میوه‌ها' },
+    { name: 'سیر', isSpice: false, category: 'سبزیجات و میوه‌ها' },
+    { name: 'سیب زمینی', isSpice: false, category: 'سبزیجات و میوه‌ها' },
+    { name: 'گوجه فرنگی', isSpice: false, category: 'سبزیجات و میوه‌ها' },
+    { name: 'هویج', isSpice: false, category: 'سبزیجات و میوه‌ها' },
+    { name: 'بادمجان', isSpice: false, category: 'سبزیجات و میوه‌ها' },
+    { name: 'فلفل دلمه‌ای', isSpice: false, category: 'سبزیجات و میوه‌ها' },
+    { name: 'کدو', isSpice: false, category: 'سبزیجات و میوه‌ها' },
+    { name: 'سبزی آش', isSpice: false, category: 'سبزیجات و میوه‌ها' },
+    { name: 'سبزی قورمه', isSpice: false, category: 'سبزیجات و میوه‌ها' },
+    { name: 'شوید', isSpice: false, category: 'سبزیجات و میوه‌ها' },
+    { name: 'جعفری', isSpice: false, category: 'سبزیجات و میوه‌ها' },
+    { name: 'تره', isSpice: false, category: 'سبزیجات و میوه‌ها' },
+    { name: 'گشنیز', isSpice: false, category: 'سبزیجات و میوه‌ها' },
+    { name: 'شنبلیله', isSpice: false, category: 'سبزیجات و میوه‌ها' },
+    { name: 'نعناع', isSpice: false, category: 'سبزیجات و میوه‌ها' },
+    { name: 'اسفناج', isSpice: false, category: 'سبزیجات و میوه‌ها' },
+    
+    // پروتئین
+    { name: 'گوشت گوسفند', isSpice: false, category: 'پروتئین', units: ['کیلوگرم', 'گرم'] },
+    { name: 'گوشت گوساله', isSpice: false, category: 'پروتئین', units: ['کیلوگرم', 'گرم'] },
+    { name: 'مرغ', isSpice: false, category: 'پروتئین', units: ['عدد', 'کیلوگرم', 'گرم'] },
+    { name: 'ماهی', isSpice: false, category: 'پروتئین', units: ['عدد', 'کیلوگرم', 'گرم'] },
+    { name: 'تخم مرغ', isSpice: false, category: 'پروتئین', units: ['عدد'] },
+    { name: 'میگو', isSpice: false, category: 'پروتئین', units: ['کیلوگرم', 'گرم'] },
+    { name: 'سوسیس', isSpice: false, category: 'پروتئین', units: ['عدد', 'بسته', 'کیلوگرم'] },
+    { name: 'کالباس', isSpice: false, category: 'پروتئین', units: ['کیلوگرم', 'گرم'] },
+    { name: 'همبرگر آماده', isSpice: false, category: 'پروتئین', units: ['عدد', 'بسته'] },
+    { name: 'ناگت مرغ', isSpice: false, category: 'پروتئین', units: ['بسته', 'کیلوگرم'] },
+    { name: 'هات داگ', isSpice: false, category: 'پروتئین', units: ['عدد', 'بسته'] },
+
+
+    // حبوبات و غلات
+    { name: 'برنج', isSpice: false, category: 'حبوبات و غلات' },
+    { name: 'رشته آش', isSpice: false, category: 'حبوبات و غلات' },
+    { name: 'لپه', isSpice: false, category: 'حبوبات و غلات' },
+    { name: 'لوبیا قرمز', isSpice: false, category: 'حبوبات و غلات' },
+    { name: 'لوبیا چیتی', isSpice: false, category: 'حبوبات و غلات' },
+    { name: 'لوبیا سفید', isSpice: false, category: 'حبوبات و غلات' },
+    { name: 'عدس', isSpice: false, category: 'حبوبات و غلات' },
+    { name: 'نخود', isSpice: false, category: 'حبوبات و غلات' },
+    { name: 'نان', isSpice: false, category: 'حبوبات و غلات' },
+    { name: 'آرد', isSpice: false, category: 'حبوبات و غلات' },
+
+    // ادویه‌جات
+    { name: 'نمک', isSpice: true, category: 'ادویه‌جات' },
+    { name: 'فلفل سیاه', isSpice: true, category: 'ادویه‌جات' },
+    { name: 'فلفل قرمز', isSpice: true, category: 'ادویه‌جات' },
+    { name: 'زردچوبه', isSpice: true, category: 'ادویه‌جات' },
+    { name: 'زعفران', isSpice: true, category: 'ادویه‌جات' },
+    { name: 'دارچین', isSpice: true, category: 'ادویه‌جات' },
+    { name: 'زیره', isSpice: true, category: 'ادویه‌جات' },
+    { name: 'هل', isSpice: true, category: 'ادویه‌جات' },
+    { name: 'پودر سیر', isSpice: true, category: 'ادویه‌جات' },
+    { name: 'پودر پیاز', isSpice: true, category: 'ادویه‌جات' },
+
+    // لبنیات
+    { name: 'شیر', isSpice: false, category: 'لبنیات' },
+    { name: 'ماست', isSpice: false, category: 'لبنیات' },
+    { name: 'کشک', isSpice: false, category: 'لبنیات' },
+    { name: 'پنیر', isSpice: false, category: 'لبنیات' },
+    { name: 'کره', isSpice: false, category: 'لبنیات' },
+    { name: 'خامه', isSpice: false, category: 'لبنیات' },
+
+    // خشکبار و چاشنی
+    { name: 'لیمو عمانی', isSpice: false, category: 'خشکبار و چاشنی' },
+    { name: 'گردو', isSpice: false, category: 'خشکبار و چاشنی' },
+    { name: 'بادام', isSpice: false, category: 'خشکبار و چاشنی' },
+    { name: 'پسته', isSpice: false, category: 'خشکبار و چاشنی' },
+    { name: 'کشمش', isSpice: false, category: 'خشکبار و چاشنی' },
+    { name: 'زرشک', isSpice: false, category: 'خشکبار و چاشنی' },
+    { name: 'آلو', isSpice: false, category: 'خشکبار و چاشنی' },
+    { name: 'خیارشور', isSpice: false, category: 'خشکبار و چاشنی' },
+    { name: 'گلاب', isSpice: false, category: 'خشکبار و چاشنی' },
+    { name: 'شکر', isSpice: false, category: 'خشکبار و چاشنی' },
+
+    // روغن و سس
+    { name: 'روغن مایع', isSpice: false, category: 'روغن و سس' },
+    { name: 'روغن زیتون', isSpice: false, category: 'روغن و سس' },
+    { name: 'رب گوجه فرنگی', isSpice: false, category: 'روغن و سس' },
+    { name: 'سس مایونز', isSpice: false, category: 'روغن و سس' },
+    
+    // متفرقه
+    { name: 'قارچ', isSpice: false, category: 'متفرقه' },
 ];

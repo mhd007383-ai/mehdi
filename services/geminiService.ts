@@ -1,3 +1,4 @@
+
 import { GoogleGenAI, Type } from "@google/genai";
 import type { Recipe, PantryItem } from '../types';
 
@@ -36,12 +37,16 @@ const recipeSchema_fallback = {
         type: Type.STRING,
         description: "زمان تخمینی پخت غذا (مثلا 'حدود ۲ ساعت').",
     },
+    servings: {
+        type: Type.STRING,
+        description: "تعداد نفرات مناسب برای این دستور پخت (مثلا '۴ نفر').",
+    },
   },
-  required: ["recipeName", "description", "ingredients", "instructions", "cookingTime"],
+  required: ["recipeName", "description", "ingredients", "instructions", "cookingTime", "servings"],
 };
 
 export async function generateRecipe(dishName: string): Promise<Recipe> {
-  const prompt = `یک دستور پخت کامل و دقیق برای غذای ایرانی "${dishName}" ارائه بده. شامل زمان پخت هم باشد.`;
+  const prompt = `یک دستور پخت کامل و دقیق برای غذای ایرانی "${dishName}" برای ۲ تا ۴ نفر ارائه بده. لیست مواد لازم باید دقیقاً برای همین تعداد باشد. شامل زمان پخت و تعداد نفرات مناسب (بین ۲ تا ۴ نفر) هم باشد.`;
 
   try {
     const response = await ai.models.generateContent({
@@ -209,4 +214,107 @@ export async function identifyItemsFromImage(imageFile: File, context: 'food' | 
         console.error("Error identifying items from image:", error);
         throw new Error("Failed to identify items from the image.");
     }
+}
+
+export async function updatePantryAfterCooking(pantryItems: PantryItem[], recipeIngredients: string[]): Promise<PantryItem[]> {
+  if (pantryItems.length === 0) {
+    return [];
+  }
+
+  const pantryJson = JSON.stringify(pantryItems, null, 2);
+  const ingredientsJson = JSON.stringify(recipeIngredients, null, 2);
+
+  const prompt = `You are a helpful kitchen pantry management assistant.
+A user has just cooked a recipe.
+Here is the current state of their pantry:
+${pantryJson}
+
+Here are the ingredients used in the recipe:
+${ingredientsJson}
+
+Your task is to update the pantry list. For each ingredient in the recipe, find the corresponding item in the pantry and intelligently deduct the amount.
+- Match ingredient names leniently (e.g., "گوشت" in pantry should match "گوشت مغز ران" in recipe).
+- If you can parse quantities and units, subtract them. If the resulting quantity is zero or very small, remove the item entirely from the list.
+- If you cannot parse quantities (e.g., for items like "به مقدار لازم" or "نمک"), you should remove the entire item from the pantry as it's assumed to be used up.
+- Preserve the 'isSpice' property of items.
+- Return the final, updated pantry list as a JSON array of objects. The JSON must conform to the provided schema. Only return the JSON array, with no other text or markdown formatting.
+- If the pantry is empty, return an empty array.
+- The language for item names is Persian.
+`;
+
+  const pantryItemSchema = {
+    type: Type.OBJECT,
+    properties: {
+        name: { type: Type.STRING, description: "نام ماده غذایی" },
+        quantity: { type: Type.STRING, description: "مقدار باقی مانده" },
+        isSpice: { type: Type.BOOLEAN, description: "آیا ادویه است؟" },
+    },
+    required: ["name", "quantity", "isSpice"],
+  };
+
+  const responseSchema = {
+    type: Type.ARRAY,
+    items: pantryItemSchema,
+  };
+
+  try {
+    const response = await ai.models.generateContent({
+      model: "gemini-2.5-flash",
+      contents: prompt,
+      config: {
+        responseMimeType: "application/json",
+        responseSchema: responseSchema,
+      },
+    });
+
+    const jsonText = response.text.trim();
+    const updatedPantryData = JSON.parse(jsonText);
+    return updatedPantryData as PantryItem[];
+
+  } catch (error) {
+    console.error("Error updating pantry:", error);
+    throw new Error("Failed to update pantry using Gemini API.");
+  }
+}
+
+export async function adjustIngredientsForServings(
+  originalIngredients: string[], 
+  originalServings: string, 
+  newServings: number
+): Promise<string[]> {
+  const ingredientsJson = JSON.stringify(originalIngredients, null, 2);
+
+  const prompt = `You are an expert recipe scaling assistant.
+Your task is to adjust the quantities of ingredients in a recipe for a different number of servings. You must be precise and handle various units of measurement (grams, cups, spoons, 'a pinch', 'به مقدار لازم', etc.) intelligently. Maintain the original language (Persian) and the style of the ingredient list.
+
+The original recipe serves ${originalServings}. The ingredients are:
+${ingredientsJson}
+
+Please adjust the recipe to serve ${newServings} people.
+
+Return only a JSON array of strings, where each string is an adjusted ingredient. The JSON must conform to the provided schema. Do not include any other text or markdown formatting.
+`;
+
+  const responseSchema = {
+    type: Type.ARRAY,
+    items: { type: Type.STRING },
+  };
+
+  try {
+    const response = await ai.models.generateContent({
+      model: "gemini-2.5-flash",
+      contents: prompt,
+      config: {
+        responseMimeType: "application/json",
+        responseSchema: responseSchema,
+      },
+    });
+
+    const jsonText = response.text.trim();
+    const adjustedIngredients = JSON.parse(jsonText);
+    return adjustedIngredients as string[];
+  } catch (error) {
+    console.error("Error adjusting ingredients:", error);
+    throw new Error("Failed to adjust ingredients using Gemini API.");
+  }
 }

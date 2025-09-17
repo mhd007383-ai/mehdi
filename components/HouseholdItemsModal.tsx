@@ -45,9 +45,15 @@ const HouseholdItemsModal: React.FC<HouseholdItemsModalProps> = ({
     );
   }, [list, searchTerm]);
 
+  const resetAnalysis = () => {
+    setIdentifiedItems([]);
+    setAnalysisError('');
+  };
+
   useEffect(() => {
     if (!isOpen) {
       setSearchTerm('');
+      resetAnalysis();
     }
   }, [isOpen]);
 
@@ -90,11 +96,6 @@ const HouseholdItemsModal: React.FC<HouseholdItemsModalProps> = ({
   const handleAddIdentifiedItem = (itemName: string) => {
       onAddItem({ name: itemName, quantity: '' });
       setIdentifiedItems(prev => prev.filter(i => i !== itemName));
-  };
-  
-  const resetAnalysis = () => {
-    setIdentifiedItems([]);
-    setAnalysisError('');
   };
 
   return (

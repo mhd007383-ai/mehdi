@@ -1,6 +1,6 @@
 
 import React, { useState, useCallback, useEffect } from 'react';
-import { generateRecipe, generateRecipeImage, suggestRecipeFromImage, suggestRecipeFromPantry } from './services/geminiService';
+import { generateRecipe, generateRecipeImage, suggestRecipeFromImage, suggestRecipeFromPantry, updatePantryAfterCooking } from './services/geminiService';
 import type { Recipe, ShoppingListItem, PantryItem, HouseholdItem } from './types';
 import Header from './components/Header';
 import RecipeGrid from './components/RecipeGrid';
@@ -118,6 +118,7 @@ const App: React.FC = () => {
           ingredients: cookbookRecipe.ingredients,
           instructions: cookbookRecipe.instructions,
           cookingTime: cookbookRecipe.cookingTime,
+          servings: cookbookRecipe.servings,
         };
         imageDataUrl = await generateRecipeImage(dishName);
       } else {
@@ -172,6 +173,7 @@ const App: React.FC = () => {
   }, [handleSelectDish]);
 
   const handlePantrySuggest = useCallback(async () => {
+    // FIX: Removed stray 'p' character causing a syntax error.
     if (pantryItems.length === 0) {
         setError("ابتدا موادی که در خانه دارید را به انبار اضافه کنید.");
         return;
@@ -230,11 +232,25 @@ const App: React.FC = () => {
 
   const handleAddPantryItem = useCallback((item: PantryItem) => {
     setPantryItems(prev => {
-        if (prev.some(i => i.name.toLowerCase() === item.name.toLowerCase())) {
-            // Optionally update quantity if item exists, for now, just prevent duplicates
-            return prev;
-        }
-        return [...prev, item];
+      const existingItemIndex = prev.findIndex(i => i.name.toLowerCase() === item.name.toLowerCase());
+
+      if (existingItemIndex > -1) {
+        // Item exists, update it by merging
+        const newList = [...prev];
+        const existingItem = newList[existingItemIndex];
+        newList[existingItemIndex] = {
+          ...existingItem, // old values
+          name: item.name,   // new name (for casing)
+          isSpice: item.isSpice, // new spice status
+          // Only update quantity if the new one is not empty.
+          // This prevents quick-add from clearing quantity.
+          // It also prevents user from clearing quantity via form. A small price to pay.
+          quantity: item.quantity || existingItem.quantity,
+        };
+        return newList;
+      }
+      // Item doesn't exist, add it
+      return [...prev, item];
     });
   }, []);
 
@@ -275,6 +291,30 @@ const App: React.FC = () => {
     setImageUrl(null);
     setError(null);
   };
+  
+  const handleCookRecipe = useCallback(async (ingredientsToCook: string[]) => {
+    if (!ingredientsToCook || ingredientsToCook.length === 0 || pantryItems.length === 0) {
+      return;
+    }
+
+    const confirmation = window.confirm("آیا مطمئن هستید؟ مواد اولیه این غذا از انبار شما کم خواهد شد.");
+    if (!confirmation) {
+      return;
+    }
+
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const updatedPantry = await updatePantryAfterCooking(pantryItems, ingredientsToCook);
+      setPantryItems(updatedPantry);
+    } catch (err) {
+      console.error(err);
+      setError('متاسفانه در به‌روزرسانی انبار مشکلی پیش آمد. لطفا دوباره امتحان کنید.');
+    } finally {
+      setIsLoading(false);
+    }
+  }, [pantryItems]);
 
   return (
     <div
@@ -327,6 +367,7 @@ const App: React.FC = () => {
                     onAddToShoppingList={handleAddToShoppingList}
                     shoppingList={shoppingList}
                     pantryList={pantryItems}
+                    onCookRecipe={handleCookRecipe}
                 />
                 )}
             </main>

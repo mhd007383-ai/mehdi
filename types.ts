@@ -5,6 +5,7 @@ export interface Recipe {
   ingredients: string[];
   instructions: string[];
   cookingTime: string;
+  servings: string;
 }
 
 export interface ShoppingListItem {
